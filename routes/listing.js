@@ -36,16 +36,12 @@ router.get("/:id" ,wrapAsync( async ( req , res ) => {
 }));
 
 // create route
-router.post("/", validateListing, wrapAsync (async  ( req , res , next ) => {
-   
-      const newlisting = new Listing(req.body.listing) ;
-        await newlisting.save();
-    // console.log(listing);
-       res.redirect("/listings");
-    }
-    )
-
-);
+router.post("/", validateListing, wrapAsync(async (req, res) => {
+    const newListing = new Listing(req.body.listing);
+    await newListing.save();
+    req.flash("success", "Successfully created a new listing!");
+    res.redirect("/listings");
+}));
 
 // edit route
 router.get("/:id/edit" , wrapAsync (async ( req , res ) =>{
