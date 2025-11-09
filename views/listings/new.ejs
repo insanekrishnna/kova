@@ -3,12 +3,12 @@
 <body>
     <% layout("/layouts/boilerplate") %>
         <div class="row mt-3">
-            <div class="col-8 offset-2">
+            <div class="col-8 offset-1 shadow-lg pb-2 ps-5 pe-5 pt-5 mb-3 bg-body text-dark border-0 rounded-4"  style="max-width: 85% ; width: 85%;">
 
-                <h3>Create New Listing</h3>
+                <h3  class="mb-2"> <b>Create New Listing</b></h3>
                 <form method="POST" action="/listings" novalidate class="needs-validation">
 
-                    <div class="mb-3">
+                    <div class="mb-2">
                         <label for="title" class="form-label">Title</label>
                         <input type="text" name="listing[title]" class="form-control" required placeholder="Enter Title"
                             >
@@ -18,7 +18,7 @@
                     </div>
 
 
-                    <div class="mb-3">
+                    <div class="mb-2">
                         <label for="description" class="form-label">Description</label>
                         <textarea class="form-control" type="text" name="listing[description]"
                             placeholder="Enter description" required> </textarea>
@@ -28,14 +28,14 @@
                     </div>
 
 
-                    <div class="mb-3">
+                    <div class="mb-2">
                         <label for="image" class="form-label">Image URL (Optional)</label>
                         <input type="text" class="form-control" id="image" name="listing[image][url]">
                         <div class="form-text">Leave empty to use default image</div>
                     </div>
 
                     <div class="row">
-                        <div class="mb-3 col-md-4">
+                        <div class="mb-2 col-md-5">
                             <label for="price" class="form-label">Price</label>
                             <input class="form-control" type="number" name="listing[price]" placeholder="Enter Price "
                                 required>
@@ -43,7 +43,7 @@
                                   Please enter a valid price !
                                  </div>
                         </div>
-                        <div class="mb-2 col-md-8">
+                        <div class="mb-2 col-md-7">
                             <label for="country" class="form-label">Country</label>
                             <input class="form-control" type="text" name="listing[country]" placeholder="Enter Country"
                                 required>
@@ -55,7 +55,7 @@
 
                     </div>
 
-                    <div class="mb-3">
+                    <div class="mb-2">
                         <label for="location" class="form-label">Location</label>
                         <input class="form-control" type="text" name="listing[location]" placeholder="Enter Location"
                             required>
@@ -65,7 +65,7 @@
                     </div>
 
 
-                    <button class="btn btn-dark add-btn mt-3">Add <i class="fa-solid fa-square-plus"></i></button>
+                    <button class="btn btn-dark add-btn mt-2">Add <i class="fa-solid fa-square-plus"></i></button>
                     <br><br>
 
                 </form>
