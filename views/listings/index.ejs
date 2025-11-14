@@ -2,21 +2,64 @@
 
 
 <body>
-    <h3>All listings</h3>
-<div class="row  row-cols-lg-3 row-cols-md-2 row-cols-sm-1 ">
-      <% for ( let listing of allListings ){%>
-        <a href="/listings/<%=listing._id%>"  class="listing-link">
-    <div class="card listing-card" >
-  <img src="<%= listing.image.url %>" class="card-img-top" alt="Listing Image" style="height: 20rem">
-  <div class="card-img-overlay"></div>
-  <div class="card-body">
-    <p class="card-text"></p>
-   <b><%= listing.title %> <br> </b>
-    &#8377; <%=listing.price.toLocaleString("en-IN") %>/night
-  </div>
-</div> 
-</a> 
-  <% } %> 
+  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-4">
+    <% for (let listing of allListings) { %>
+
+        <div class="col">
+            <a href="/listings/<%= listing._id %>" class="text-decoration-none text-dark">
+
+                <div class="fancy-card">
+                    <div class="fancy-card-img">
+                        <img src="<%= listing.image.url %>" alt="Listing Image">
+                        
+                        <span class="price-tag">
+                            ₹<%= listing.price.toLocaleString("en-IN") %>/day
+                        </span>
+
+                        <div class="img-text">
+                           
+                        </div>
+                    </div>
+
+                    <div class="fancy-card-info ">
+                        <div>
+                            <b> <h6 class="fw-semibold mb-1 listing-title"><%= listing.title %></h6>
+                            </b>
+                            <p class="small-text card-des"><%= listing.description %></p>
+                        </div>
+
+              <div class="d-flex justify-content-between align-items-center mt-3">
+
+    <!-- LEFT SIDE (icon + city + country) -->
+    <div class="d-flex align-items-start gap-2 flex-grow-1">
+        
+        <!-- Icon -->
+        <div class="rounded-circle d-flex align-items-center justify-content-center shadow"
+             style="width: 36px; height: 36px; background:#efefef;">
+            <i class="fa-solid fa-location-dot text-dark"></i>
+        </div>
+
+        <!-- CITY + COUNTRY stacked -->
+        <div class="lh-sm" style="white-space: nowrap;">
+            <div class="fw-semibold text-dark"><%= listing.location %></div>
+            <div class="text-muted small"><%= listing.country %></div>
+        </div>
+
+    </div>
+
+    <!-- RIGHT SIDE (button fixed width) -->
+    <div class="nav-btn " style="flex-shrink: 0; background:#efefef;">
+        <i class="bi bi-send-fill"></i>
+    </div>
+
+</div>
+                    </div>
+                </div>
+
+            </a>
+        </div>
+
+    <% } %>
 </div>
 
    

@@ -1,4 +1,4 @@
-const Listing = require("../models/listing");
+const Listing = require("../models/listing.js");
 
 
 module.exports.index = async ( req , res ) => {
@@ -13,7 +13,9 @@ module.exports.renderNewForm = ( req , res ) => {
 
 module.exports.showListing = async (req, res) => {
     let { id } = req.params;
-    const listing = await Listing.findById(id).populate({ path : "reviews", populate: { path: "author", }, }).populate("owner")    ;
+    const listing = await Listing.findById(id)
+        .populate("reviews")
+        .populate("owner");
     if (!listing) {
         req.flash("error", "Listing not found!");
         return res.redirect("/listings");  // Add return here
@@ -26,7 +28,7 @@ module.exports.createListing = (async (req, res) => {
     const newListing = new Listing(req.body.listing);
     newListing.owner = req.user._id;
     await newListing.save();
-    req.flash("success", "Successfully added a new listing !");
+    req.flash("success", "New Listing Created!");
     res.redirect("/listings");
 });
 
@@ -46,15 +48,14 @@ module.exports.updateListing = async ( req , res ) =>{
 
 
      await Listing.findByIdAndUpdate(id , {...req.body.listing});
-        req.flash("success", "Yupp, Listing Updated !");
+        req.flash("success", "Listing Updated!");
      res.redirect(`/listings/${id}`); 
 
 };
 
 module.exports.destroyListing = async ( req , res ) =>{
     let {id } = req.params;
-    let deletedListing = await Listing.findByIdAndDelete(id);
-    console.log("Deleted Listing:", deletedListing);
-    req.flash("success", "Listing deleted !");
+    await Listing.findByIdAndDelete(id);
+    req.flash("success", "Listing Deleted!");
      res.redirect("/listings");
     };
