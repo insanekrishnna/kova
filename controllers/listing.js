@@ -12,16 +12,18 @@ module.exports.renderNewForm = ( req , res ) => {
 };
 
 module.exports.showListing = async (req, res) => {
-    let { id } = req.params;
-    const listing = await Listing.findById(id)
-        .populate("reviews")
-        .populate("owner");
-    if (!listing) {
-        req.flash("error", "Listing not found!");
-        return res.redirect("/listings");  // Add return here
-    }
-    console.log(listing);
-    res.render("listings/show.ejs", { listing });
+  const { id } = req.params;
+  const listing = await Listing.findById(id)
+    .populate({
+      path: "reviews",
+      populate: { path: "author", select: "username" } // <-- populate review.author
+    })
+    .populate("owner", "username");
+  if (!listing) {
+    req.flash("error", "Listing not found");
+    return res.redirect("/listings");
+  }
+  res.render("listings/show", { listing });
 };
      
 module.exports.createListing = (async (req, res) => {
