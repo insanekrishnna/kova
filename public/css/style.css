@@ -381,7 +381,7 @@ font-weight: 400 !important;
 
 .show-star-rating .stars i.active,
 .show-star-rating .stars i:hover {
-    color: #ffd500; /* soft gold */
+    color: #ffd500; 
     transform: scale(1.1);
 }
 
@@ -389,4 +389,17 @@ font-weight: 400 !important;
 .show-star-rating .stars i:hover ~ i {
     color: #d7d7d7 !important;
     transform: scale(1);
+}
+
+/* review card stars */
+
+.show-review-stars i {
+    color: #ffd500;
+    font-size: 1.1rem;
+    margin-right: 2px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+
+.show-review-stars i.fa-regular {
+    color: #d4d4d4; 
 }
