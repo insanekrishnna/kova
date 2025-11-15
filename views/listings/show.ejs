@@ -95,9 +95,11 @@
                  <% for ( review of listing.reviews) { %>
                 <div class="card col-5 ms-2 me-3 mb-3 p-3 border-1 rounded-3 mx-auto shadow-sm bg-white my-2">  
                     <div class="card-body card border-0">
-                        <h6 class="card-title fw-bold text-dark mb-1"><B> @<%= review.author %></B></h6>
-                         <p class="card-text text-muted small mb-2"><%= review.comment %></p>
-                         <p class="card-text badge bg-light text-dark border small  mb-3 "><%= review.rating %> Stars</p>
+                        <h6 class="card-title fw-bold text-dark mb-1">
+  <b>@<%= review.author ? review.author.username : 'Unknown' %></b>
+</h6>
+<p class="card-text text-muted small mb-2"><%= review.comment %></p>
+<p class="card-text badge bg-light text-dark border small mb-3"><%= review.rating %> Stars</p>
                          <!-- <div class="mb-3">
                             <i class="bi bi-star-fill text-warning"></i>
                             <i class="bi bi-star-fill text-warning"></i>
