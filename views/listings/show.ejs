@@ -72,7 +72,16 @@
             <form action="/listings/<%= listing._id %>/reviews" method="POST" class="needs-validation" novalidate>
     <div class="mb-3  ">
         <label for="rating" class="ms-1">Rating</label>
-        <input type="range" min="1" max="5" id="rating" name="review[rating]" class="form-range ms-1">
+        <!-- <input type="range" min="1" max="5" id="rating" name="review[rating]" class="form-range ms-1"> -->
+        <div class="show-star-rating">
+  <input type="hidden" name="review[rating]" id="realRating" value="0">
+
+  <div class="stars">
+    <% for (let i = 1; i <= 5; i++) { %>
+      <i class="fa-solid fa-star" data-value="<%= i %>"></i>
+    <% } %>
+  </div>
+</div>
  
     </div>
     <div class="container my-4">
@@ -117,5 +126,52 @@
             </div>
         </div>
        
+
+
+        
+
+<!-- STAR RATING SCRIPT-->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const stars = document.querySelectorAll(".show-star-rating .stars i");
+  const realInput = document.getElementById("realRating");
+
+  stars.forEach(star => {
+    star.addEventListener("mouseover", function() {
+      resetStars();
+      highlightStars(this.dataset.value);
+    });
+
+    star.addEventListener("click", function() {
+      realInput.value = this.dataset.value;
+      lockStars(this.dataset.value);
+    });
+
+    star.addEventListener("mouseleave", function() {
+      lockStars(realInput.value);
+    });
+  });
+
+  function highlightStars(count) {
+    stars.forEach(s => {
+      if (s.dataset.value <= count) s.classList.add("active");
+    });
+  }
+
+  function lockStars(count) {
+    resetStars();
+    stars.forEach(s => {
+      if (s.dataset.value <= count) s.classList.add("active");
+    });
+  }
+
+  function resetStars() {
+    stars.forEach(s => s.classList.remove("active"));
+  }
+});
+</script>
+
+
+
 
     </body>

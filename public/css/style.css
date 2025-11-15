@@ -340,3 +340,53 @@ font-weight: 400 !important;
     font-size: clamp(14px, 2vw, 18px);
 }
 
+
+/* .show-rating-stars {
+    display: flex;
+    gap: 8px;
+}
+
+.show-rating-stars input {
+    display: none;
+}
+
+.show-rating-stars label {
+    font-size: 1.4rem;
+    color: #ccc;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.show-rating-stars input:checked ~ label {
+    color: #000;
+} */
+
+
+.show-star-rating {
+    margin: 15px 0 25px;
+}
+
+.show-star-rating .stars {
+    display: flex;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.show-star-rating .stars i {
+    font-size: 1.9rem;
+    color: #d7d7d7;
+    transition: 0.25s ease;
+    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.15));
+}
+
+.show-star-rating .stars i.active,
+.show-star-rating .stars i:hover {
+    color: #ffd500; /* soft gold */
+    transform: scale(1.1);
+}
+
+/* hover effect: fill previous stars too */
+.show-star-rating .stars i:hover ~ i {
+    color: #d7d7d7 !important;
+    transform: scale(1);
+}
