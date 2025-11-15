@@ -73,20 +73,7 @@
     <div class="mb-3  ">
         <label for="rating" class="ms-1">Rating</label>
         <input type="range" min="1" max="5" id="rating" name="review[rating]" class="form-range ms-1">
-        <fieldset class="starability-slot">
-  <legend>First rating:</legend>
-  <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
-  <input type="radio" id="first-rate1" name="rating" value="1" />
-  <label for="first-rate1" title="Terrible">1 star</label>
-  <input type="radio" id="first-rate2" name="rating" value="2" />
-  <label for="first-rate2" title="Not good">2 stars</label>
-  <input type="radio" id="first-rate3" name="rating" value="3" />
-  <label for="first-rate3" title="Average">3 stars</label>
-  <input type="radio" id="first-rate4" name="rating" value="4" />
-  <label for="first-rate4" title="Very good">4 stars</label>
-  <input type="radio" id="first-rate5" name="rating" value="5" />
-  <label for="first-rate5" title="Amazing">5 stars</label>
-</fieldset>
+ 
     </div>
     <div class="container my-4">
     <div class="mb-3 ">
@@ -108,7 +95,7 @@
                  <% for ( review of listing.reviews) { %>
                 <div class="card col-5 ms-2 me-3 mb-3 p-3 border-1 rounded-3 mx-auto shadow-sm bg-white my-2">  
                     <div class="card-body card border-0">
-                        <h6 class="card-title fw-bold text-dark mb-1"><B> @<%= review.author.username %></B></h6>
+                        <h6 class="card-title fw-bold text-dark mb-1"><B> @<%= review.author %></B></h6>
                          <p class="card-text text-muted small mb-2"><%= review.comment %></p>
                          <p class="card-text badge bg-light text-dark border small  mb-3 "><%= review.rating %> Stars</p>
                          <!-- <div class="mb-3">
