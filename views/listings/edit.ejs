@@ -14,7 +14,8 @@
             <div class="col-8 offset-1 shadow-lg pb-3 ps-5 pe-5 pt-5 mb-3 bg-body text-dark border-0 rounded-4"  style="max-width: 85% ; width: 85%; ">
                 <h3 class=" vh-100 mb-3"> <b>Edit Your Listing </b></h3>
                 <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" novalidate
-                    class="needs-validation">
+                    class="needs-validation" enctype="multipart/form-data">
+                    
                     <div class="mb-2">
                         <label for="title" class="form-label">Title</label>
                         <input required type="text" class="form-control" name="listing[title]"
@@ -37,13 +38,17 @@
 
                     </div>
 
+
+                    <div class="mb-2 p-2 border-1 shadow-lg bg-body rounded-4" shadow-lg style="max-width: 33%; height: auto;">
+                        <p class=" badge border-1  p-2            bg-light text-dark">Orignal listing image</p>
+                        <img  src="<%= listing.image.url %>" class="border-0 p-0 rounded-4  " style="max-width: 100%; height: auto; " alt="">
+                        
+                    </div>
                     <div class="mb-2">
-                        <label for="image" class="form-label">image</label>
-                        <input required class="form-control" type="text" name="listing[image][url]"
-                            value="<%= listing.image?.url || '' %>">
-                        <div class="invalid-feedback">
-                            Please provide an image URL !
-                        </div>
+                        <label for="image" class="form-label">Upload new image</label>
+                        <input required class="form-control" type="file" name="listing[image][url]"
+                            >
+                        
                     </div>
 
                     <div class="row">

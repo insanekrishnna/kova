@@ -1,22 +1,28 @@
+
+<head>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
 <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/"><i class="fa-brands fa-kickstarter-k"></i></a>
+    <a class="navbar-brand" href="/listings"><i class="fa-brands fa-kickstarter-k"></i></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link" href="/">Home</a>
-        <a class="nav-link" href="/listings">Listings</a>
-        <a class="nav-link" href="/listings/new">Add new Listing</a>
+      <div class="navbar-nav menu-container ">
+                       
+        <a class="nav-link text-white" href="/listings"> <button class="menu-item logout"> <b>Explore </b> </button> </a>
+        <a class="nav-link  text-white" href="/listings/new"><button class="menu-item  logout "> <b>New</b> </button></a>
         
       </div>
-      <div class="navbar-nav ms-auto">
+      <div class="navbar-nav ms-auto segmented-control">
+        
          <% if(!currentUser      ) { %>
-          <a class="nav-link" href="/signup">Sign Up</a>
-          <a class="nav-link" href="/login">Login</a>
+          <a class="nav-link" href="/signup"> <button class="menu-item logout"> <b>Sign Up</b> </button></a>
+          <a class="nav-link" href="/login"> <button class="menu-item logout"> <b>Login</b> </button></a>
          <% } else { %>
-          <a class="nav-link" href="/logout">Logout</a>
+          <a class="nav-link  text-white" href="/logout"> <button class="menu-item logout"> <b>Logout</b> </button></a>
          <% } %>
 
       </div>

@@ -403,3 +403,56 @@ font-weight: 400 !important;
 .show-review-stars i.fa-regular {
     color: #d4d4d4; 
 }
+
+.menu-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px;
+  width: min(260px, 90vw);
+}
+
+.menu-item {
+  width: 100%;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 20px;
+  background: #fff;
+  color: #ded9d9;
+  font-size: clamp(14px, 2vw, 16px);
+  font-weight: 500;
+  text-align: left;
+  transition: all 0.2s ease;
+  box-shadow:
+      0 3px 6px rgba(0,0,0,0.08),
+      inset 0 0 0 rgba(0,0,0,0);
+}
+
+/* 3D hover push-up effect */
+.menu-item:hover {
+  transform: translateY(-2px);
+  box-shadow:
+      0 5px 12px rgba(0,0,0,0.15),
+      inset 0 0 0 rgba(0,0,0,0);
+}
+
+/* pressed look */
+.menu-item:active {
+  transform: translateY(0);
+  box-shadow:
+      inset 2px 2px 6px rgba(0,0,0,0.15),
+      inset -2px -2px 6px rgba(255,255,255,0.8);
+}
+
+/* dark items (like Explore + New) */
+.menu-item:not(.logout) {
+  background: #111;
+  color: #fff;
+}
+
+/* logout stays light */
+.logout {
+    ;
+  background: #ffffff;
+  color: #090909;
+}
