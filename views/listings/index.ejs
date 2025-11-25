@@ -1,138 +1,149 @@
 <% layout("/layouts/boilerplate") %>
 
 <style>
-
 #filters{
     display: flex;
-    /* margin-top: 1rem; */
     flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid #eee;
 }
 .filter{
-    /* display: flex; */
-    text-align: center !important;
-    margin-right: 1.3rem;
-    margin-top: 1rem;
-  opacity: 0.7;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    opacity: 0.7;
 }
 .filter:hover{
     opacity: 1;
-    cursor: pointer;
+}
+.filter.active{
+    opacity: 1;
+    background-color: #f0f0f0;
+    border-bottom: 3px solid #1a1a1a;
 }
 
 .filter p{
-    margin-top: 0.1rem;
-    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
 
+.filter div {
+    font-size: 1.5rem;
 }
 </style>
 
 <div id="filters" >
-    <div class="filter ">
+    <div class="filter active" data-category="">
        <div><i class="fa-solid fa-fire"></i></div> 
-        <p> Trending </p>
-
+        <p>Trending</p>
     </div>
-    <div class="filter ">
+    <div class="filter" data-category="Rooms">
        <div><i class="fa-solid fa-bed"></i></div> 
-        <p> Rooms</p>
-
+        <p>Rooms</p>
     </div>
-    <div class="filter ">
+    <div class="filter" data-category="cities">
        <div><i class="fa-solid fa-tree-city"></i></div> 
         <p>Iconic Cities</p>
-
     </div>
-    <div class="filter ">
+    <div class="filter" data-category="mountains">
        <div><i class="fa-solid fa-mountain-sun"></i></div> 
         <p>Mountains</p>
-
     </div>
-    <div class="filter ">
+    <div class="filter" data-category="Historical">
        <div><i class="fa-brands fa-fort-awesome-alt"></i></div> 
         <p>Castles</p>
-
     </div>
-    <div class="filter ">
+    <div class="filter" data-category="Beach">
        <div><i class="fa-solid fa-water-ladder"></i></div> 
         <p>Pools</p>
-
     </div>
-    <div class="filter ">
+    <div class="filter" data-category="Wildlife">
        <div><i class="fa-solid fa-campground"></i></div> 
         <p>Camping</p>
-
     </div>
-    <div class="filter ">
+    <div class="filter" data-category="farms">
        <div><i class="fa-solid fa-tractor"></i></div> 
         <p>Farms</p>
-
     </div>
-    <div class="filter ">
+    <div class="filter" data-category="arctic">
        <div><i class="fa-solid fa-igloo"></i></div> 
         <p>Arctic</p>
-
     </div>
-
 </div>
 
-  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-4 ">
+<div id="listings-container" class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-4">
     <% for (let listing of allListings) { %>
-
-        <div class="col">
+        <div class="col listing-item" data-category="<%= listing.category %>">
             <a href="/listings/<%= listing._id %>" class="text-decoration-none text-dark">
-
                 <div class="fancy-card">
                     <div class="fancy-card-img">
                         <img src="<%= listing.image.url %>" alt="Listing Image">
-                        
                         <span class="price-tag">
                             ₹<%= listing.price.toLocaleString("en-IN") %>/day
                         </span>
-
-                        <div class="img-text">
-                           
-                        </div>
                     </div>
-
-                    <div class="fancy-card-info ">
+                    <div class="fancy-card-info">
                         <div>
-                            <b> <h6 class="fw-semibold mb-1 listing-title"><%= listing.title %></h6>
-                            </b>
+                            <b><h6 class="fw-semibold mb-1 listing-title"><%= listing.title %></h6></b>
                             <p class="small-text card-des"><%= listing.description %></p>
                         </div>
-
-              <div class="d-flex justify-content-between align-items-center mt-3">
-
-    <!-- LEFT SIDE (icon + city + country) -->
-    <div class="d-flex align-items-start gap-2 flex-grow-1">
-        
-        <!-- Icon -->
-        <div class="rounded-circle d-flex align-items-center justify-content-center shadow"
-             style="width: 36px; height: 36px; background:#efefef;">
-            <i class="fa-solid fa-location-dot text-dark"></i>
-        </div>
-
-        <!-- CITY + COUNTRY stacked -->
-        <div class="lh-sm" style="white-space: nowrap;">
-            <div class="fw-semibold text-dark"><%= listing.location %></div>
-            <div class="text-muted small"><%= listing.country %></div>
-        </div>
-
-    </div>
-
-    <!-- RIGHT SIDE (button fixed width) -->
-    <div class="nav-btn " style="flex-shrink: 0; background:#efefef;">
-        <i class="bi bi-send-fill"></i>
-    </div>
-
-</div>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <div class="d-flex align-items-start gap-2 flex-grow-1">
+                                <div class="rounded-circle d-flex align-items-center justify-content-center shadow" style="width: 36px; height: 36px; background:#efefef;">
+                                    <i class="fa-solid fa-location-dot text-dark"></i>
+                                </div>
+                                <div class="lh-sm" style="white-space: nowrap;">
+                                    <div class="fw-semibold text-dark"><%= listing.location %></div>
+                                    <div class="text-muted small"><%= listing.country %></div>
+                                </div>
+                            </div>
+                            <div class="nav-btn" style="flex-shrink: 0; background:#efefef;">
+                                <i class="bi bi-send-fill"></i>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
             </a>
         </div>
-
     <% } %>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const filterButtons = document.querySelectorAll('.filter');
+    const listingItems = document.querySelectorAll('.listing-item');
+    
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const selectedCategory = this.getAttribute('data-category');
+            
+            // Update active button
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Filter listings
+            let visibleCount = 0;
+            listingItems.forEach(item => {
+                const itemCategory = item.getAttribute('data-category');
+                
+                if (selectedCategory === '' || itemCategory === selectedCategory) {
+                    item.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            
+            if (visibleCount === 0) {
+                console.log('No listings found for category:', selectedCategory);
+            }
+        });
+    });
+});
+</script>
 
 
