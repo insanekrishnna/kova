@@ -29,18 +29,7 @@ const seedListings = [
       filename: "mountain1.jpg"
     }
   },
-  {
-    title: "Alpine Mountain Resort",
-    description: "Luxury mountain resort with spa and fine dining",
-    price: 8000,
-    location: "Uttarakhand",
-    country: "India",
-    category: "mountains",
-    image: {
-      url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800",
-      filename: "mountain2.jpg"
-    }
-  },
+  
   {
     title: "Modern City Apartment",
     description: "Spacious apartment in the heart of the city with city views",
@@ -89,30 +78,7 @@ const seedListings = [
       filename: "arctic2.jpg"
     }
   },
-  {
-    title: "Organic Farm Stay",
-    description: "Work on an organic farm and enjoy farm-to-table meals",
-    price: 2500,
-    location: "Punjab",
-    country: "India",
-    category: "farms",
-    image: {
-      url: "https://images.unsplash.com/photo-1500382017468-7049fcc2121d?w=800",
-      filename: "farm1.jpg"
-    }
-  },
-  {
-    title: "Heritage Farm Resort",
-    description: "Traditional farmhouse with modern comforts and countryside views",
-    price: 3500,
-    location: "Rajasthan",
-    country: "India",
-    category: "farms",
-    image: {
-      url: "https://images.unsplash.com/photo-1643081332283-dd92fc20c0b2?w=800",
-      filename: "farm2.jpg"
-    }
-  },
+  
   {
     title: "Beachfront Villa",
     description: "Luxury villa with private beach access and infinity pool",
@@ -185,30 +151,7 @@ const seedListings = [
       filename: "wildlife2.jpg"
     }
   },
-  {
-    title: "Ancient Fort Mansion",
-    description: "Stay in a historic fort converted into a luxurious mansion",
-    price: 7500,
-    location: "Rajasthan",
-    country: "India",
-    category: "Historical",
-    image: {
-      url: "https://images.unsplash.com/photo-1566683246869-cc14a01c0dfa?w=800",
-      filename: "historical1.jpg"
-    }
-  },
-  {
-    title: "Heritage Palace Stay",
-    description: "Experience royalty in this beautifully restored heritage palace",
-    price: 8500,
-    location: "Rajasthan",
-    country: "India",
-    category: "Historical",
-    image: {
-      url: "https://images.unsplash.com/photo-1573929623966-8b85ee6b773f?w=800",
-      filename: "historical2.jpg"
-    }
-  }
+
 ];
 
 async function seedDB() {
