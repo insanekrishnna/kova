@@ -1,39 +1,90 @@
 <% layout("/layouts/boilerplate") %>
-
 <style>
-#filters{
+/* NAVBAR WRAPPER */
+#filters {
     display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    padding: 1rem 0;
-    border-bottom: 1px solid #eee;
+    gap: clamp(1rem, 3vw, 2rem);
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(145deg, #1d1d1f, #262628);
+    padding: 0.5rem 2rem;
+    border-radius: 2.8rem;
+    width: fit-content;
+    margin: 1.6rem auto 3.5rem;
+    backdrop-filter: blur(100px);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgb(255, 255, 255);
+    overflow-x: auto;
+    scrollbar-width: none;
 }
-.filter{
-    text-align: center;
+
+#filters::-webkit-scrollbar {
+    display: none;
+}
+
+/* NAV ITEMS */
+.filter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
     cursor: pointer;
-    transition: all 0.3s ease;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    opacity: 0.7;
-}
-.filter:hover{
-    opacity: 1;
-}
-.filter.active{
-    opacity: 1;
-    background-color: #f0f0f0;
-    border-bottom: 3px solid #1a1a1a;
+    opacity: 0.9;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    position: relative;
+    min-width: fit-content;
 }
 
-.filter p{
-    margin-top: 0.5rem;
-    font-size: 0.85rem;
-    font-weight: 500;
+.filter:hover {
+    opacity: 1;
 }
 
+/* ACTIVE STATE */
+.filter.active {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+/* ICONS */
 .filter div {
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 2vw, 1.1rem);
+    color: #b7bcc4;
 }
+
+.filter.active div {
+    color: #ffffff;
+    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.45));
+}
+
+/* TEXT LABEL */
+.filter p {
+    font-size: clamp(0.78rem, 2vw, 0.9rem);
+    font-weight: 500;
+    margin: 0;
+    color: #9fa6b2;
+}
+
+.filter.active p {
+    color: #fff;
+}
+
+/* BADGE */
+.filter .badge {
+    position: absolute;
+    top: -12px;
+    right: -14px;
+    background: rgba(255, 120, 245, 0.75);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    font-size: 0.62rem;
+    padding: 2px 6px;
+    border-radius: 8px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    box-shadow: 0 0 10px rgba(255, 130, 250, 0.6);
+    border: 1px solid rgba(255,255,255,0.25);
+}
+
 </style>
 
 <div id="filters" >
