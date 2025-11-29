@@ -46,13 +46,13 @@
           <form action="/listings/<%= listing._id %>/reviews" method="POST" class="review-form-wrapper">
             <div class="mb-3">
               <label class="form-label small">Rating</label>
-              <div class="stars-container">
+              <div class="stars-container" id="starsContainer">
                 <input type="hidden" name="review[rating]" id="ratingInput" value="0">
                 <% for (let i = 1; i <= 5; i++) { %>
-                  <i class="fa-solid fa-star review-star" data-rating="<%= i %>" style="cursor:pointer; font-size:1.5rem; margin-right:0.5rem; color:#ebad27;"></i>
+                  <i class="fa-solid fa-star review-star" data-rating="<%= i %>" style="cursor:pointer; font-size:1.5rem; margin-right:0.5rem; color:#ddd; transition: all 0.2s ease;"></i>
                 <% } %>
               </div>
-              
+              <small class="text-danger d-block mt-2" id="ratingError" style="display:none;">Please select a rating</small>
             </div>
             <div class="mb-3">
               <label class="form-label border badge text-dark">Comment</label>
@@ -99,14 +99,33 @@
       const ratingError = document.getElementById('ratingError');
       const form = document.querySelector('.review-form-wrapper');
 
+      // Function to update star colors
+      function updateStars(rating) {
+        stars.forEach(star => {
+          const starRating = parseInt(star.getAttribute('data-rating'));
+          if (starRating <= rating) {
+            star.style.color = '#ffc107';
+          } else {
+            star.style.color = '#ddd';
+          }
+        });
+      }
+
+      // Click handler
       stars.forEach(star => {
         star.addEventListener('click', function() {
-          const rating = this.getAttribute('data-rating');
+          const rating = parseInt(this.getAttribute('data-rating'));
           ratingInput.value = rating;
           ratingError.style.display = 'none';
-          
+          updateStars(rating);
+        });
+
+        // Hover effect
+        star.addEventListener('mouseover', function() {
+          const hoverRating = parseInt(this.getAttribute('data-rating'));
           stars.forEach(s => {
-            if (s.getAttribute('data-rating') <= rating) {
+            const sRating = parseInt(s.getAttribute('data-rating'));
+            if (sRating <= hoverRating) {
               s.style.color = '#ffc107';
             } else {
               s.style.color = '#ddd';
@@ -115,11 +134,22 @@
         });
       });
 
+      // Mouse leave - restore selected rating color
+      const starsContainer = document.getElementById('starsContainer');
+      if (starsContainer) {
+        starsContainer.addEventListener('mouseleave', function() {
+          const currentRating = parseInt(ratingInput.value);
+          updateStars(currentRating);
+        });
+      }
+
+      // Form submit validation
       if (form) {
         form.addEventListener('submit', function(e) {
           if (ratingInput.value === '0') {
             e.preventDefault();
             ratingError.style.display = 'block';
+            return false;
           }
         });
       }
