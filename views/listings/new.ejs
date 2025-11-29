@@ -1,8 +1,96 @@
+<style>
+:root {
+  --background: #F5F6F7;
+  --card-bg: #FFFFFF;
+  --border-soft: #E6E7E9;
+  --text-dark: #1B1D1F;
+  --text-muted: #59616B;
+  --radius: 20px;
+}
+
+/* Page base */
+body {
+  background: var(--background) !important;
+  padding-top: 1rem;
+}
+
+/* Main Card Wrapper */
+.col-8.offset-2 {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 1rem 1.2rem;
+  border: 1px solid var(--border-soft);
+  box-shadow: 0px 12px 32px rgba(0,0,0,0.05);
+}
+
+/* Heading */
+h3 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 1.3rem;
+  text-align: left;
+}
+
+/* Labels */
+.form-label {
+  font-size: .75rem;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+/* Inputs + Select */
+.form-control, select {
+  border-radius: 10px !important;
+  padding: 0.5rem 0.3rem !important;
+  background: #fff !important;
+  border: 1px solid var(--border-soft) !important;
+  transition: all .25s ease;
+  font-size: 0.8rem !important;
+}
+
+.form-control:focus, select:focus {
+  border-color: #141414 !important;
+  box-shadow: 0 0 0 4px rgba(0,0,0,0.08) !important;
+}
+
+/* Margin between elements */
+.mb-3 {
+  margin-bottom: 1rem !important;
+}
+
+/* Submit Button */
+.btn.btn-dark {
+  width: 100%;
+  background: #111 !important;
+  padding: .75rem !important;
+  border-radius: 50px !important;
+  font-size: 0.8rem !important;
+  font-weight: 600;
+  border: none !important;
+  transition: all .25s ease;
+  letter-spacing: .3px;
+}
+
+/* Button Hover */
+.btn.btn-dark:hover {
+  filter: brightness(1.1);
+  transform: translateY(-3px);
+  box-shadow: 0px 8px 26px rgba(0,0,0,0.18);
+}
+
+/* Validation Text */
+.invalid-feedback {
+  font-size: 0.8rem;
+  color: #D0342C !important;
+}
+</style>
+
 <body>
     <% layout("/layouts/boilerplate") %>
 
 <div class="row">
-  <div class="col-8 offset-2">
+  <div class="col-8 offset-2 mt-2 mb-4">
     <h3>Create a New Listing</h3>
     <form action="/listings" method="POST" enctype="multipart/form-data" novalidate class="needs-validation">
       
