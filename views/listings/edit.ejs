@@ -12,17 +12,18 @@
   --border-soft: #E6E7E9;
   --text-dark: #1B1D1F;
   --text-muted: #59616B;
-  --radius: 20px;
+  --radius: 25px;
 }
 
 /* Page base */
 body {
   background: var(--background) !important;
-  padding-top: 1rem;
+ 
 }
 
 /* Main Card Wrapper */
 .col-8.offset-2 {
+    margin-top:;
   background: var(--card-bg);
   border-radius: var(--radius);
   padding: 1rem 1.2rem;
@@ -99,7 +100,7 @@ h3 {
     <% layout("/layouts/boilerplate") %>
 
     <div class="row">
-        <div class="col-8 offset-2">
+        <div class="col-8 offset-2 mt-2 mb-4">
             <h3>Edit Listing</h3>
             <form action="/listings/<%= listing._id %>?_method=PUT" method="POST" enctype="multipart/form-data"
                 novalidate class="needs-validation">
