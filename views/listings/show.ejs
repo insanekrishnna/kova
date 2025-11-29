@@ -6,8 +6,8 @@
     <% } else { %>
       <div class="row justify-content-center">
         <div class="col-12 col-md-10 col-lg-8">
-          <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
-            <img src="<%= listing.image && listing.image.url ? listing.image.url : '/images/placeholder.png' %>" alt="listing_image" class="card-img-top" style="height:330px; object-fit:cover;">
+          <div class="card border-0 shadow-lg rounded-4 overflow-hidden mb-4">
+            <img src="<%= listing.image && listing.image.url ? listing.image.url : '/images/placeholder.png' %>" alt="listing_image" class="card-img-top mt-2" style="height:330px; max-width: 95%; margin: auto;  object-fit:cover;">
             <div class="card-body p-4">
               <h4 class="fw-semibold text-dark mb-2"><%= listing.title %></h4>
               <p class="text-muted small mb-2">
@@ -16,12 +16,12 @@
               <p class="text-secondary small mb-4"><%= listing.description %></p>
               
               <div class="border-top pt-3">
-                <div class="d-flex justify-content-between align-items-center gap-2 mb-3">
+                <div class="d-flex justify-content-between align-items-center gap-2 mb-2 flex-wrap">
                   <div>
                     <h6 class="fw-semibold text-dark mb-0">₹<%= listing.price ? listing.price.toLocaleString("en-IN") : 'N/A' %> <span class="text-muted fw-normal">/night</span></h6>
                     <small class="text-muted"><%= listing.location %><%= listing.country ? ', ' + listing.country : '' %></small>
                   </div>
-                  <a href="#" class="btn btn-dark btn-sm rounded-pill px-4">Book Now</a>
+                  <a href="#" class="btn btn-dark btn-sm rounded-pill px-3"><i class="fa-solid fa-location-dot"></i> <%= listing.country%></a>
                 </div>
 
                 <!-- Edit/Delete - SAFE CHECK -->
@@ -42,23 +42,23 @@
       <!-- Reviews Section -->
       <div class="col-8 offset-2 mb-3 mt-4">
         <% if (currUser) { %>
-          <h4 class="fw-semibold mb-3">Leave a Review</h4>
+          <h4 class="fw-semibold mb-3">Feel free to drop a review !</h4>
           <form action="/listings/<%= listing._id %>/reviews" method="POST" class="review-form-wrapper">
             <div class="mb-3">
               <label class="form-label small">Rating</label>
               <div class="stars-container">
                 <input type="hidden" name="review[rating]" id="ratingInput" value="0">
                 <% for (let i = 1; i <= 5; i++) { %>
-                  <i class="fa-solid fa-star review-star" data-rating="<%= i %>" style="cursor:pointer; font-size:1.5rem; margin-right:0.5rem; color:#ddd;"></i>
+                  <i class="fa-solid fa-star review-star" data-rating="<%= i %>" style="cursor:pointer; font-size:1.5rem; margin-right:0.5rem; color:#ebad27;"></i>
                 <% } %>
               </div>
-              <small class="text-danger d-block mt-2" id="ratingError" style="display:none;">Please select a rating</small>
+              
             </div>
             <div class="mb-3">
-              <label class="form-label small">Comment</label>
-              <textarea name="review[comment]" cols="30" rows="3" class="form-control" required></textarea>
+              <label class="form-label border badge text-dark">Comment</label>
+              <textarea name="review[comment]" cols="30" rows="3" class="form-control shadow-sm border-0 rounded-3" required></textarea>
             </div>
-            <button type="submit" class="btn btn-dark btn-sm rounded-pill px-4">Submit Review</button>
+            <button type="submit" class="btn btn-outline-dark btn-sm rounded-pill px-4 ms-1">Submit</button>
           </form>
         <% } else { %>
           <p class="text-muted"><a href="/login">Login</a> to leave a review</p>
@@ -67,10 +67,10 @@
         <hr class="my-4">
         
         <!-- Display Reviews -->
-        <h5 class="fw-semibold mb-3">Reviews</h5>
+        <h5 class="fw-semibold mb-3 badge text-dark border">Reviews <i class="fa-solid fa-fingerprint"></i></h5>
         <% if (listing.reviews && listing.reviews.length > 0) { %>
           <% for (let review of listing.reviews) { %>
-            <div class="card p-3 mb-2">
+            <div class="card p-3 mb-2 col-8  border-0  shadow-sm">
               <h6 class="fw-bold mb-2">@<%= review.author ? review.author.username : 'Unknown' %></h6>
               <div class="mb-2">
                 <% for (let i = 1; i <= 5; i++) { %>
