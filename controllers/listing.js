@@ -102,3 +102,38 @@ module.exports.filterListings = async (req, res) => {
     const listings = await Listing.find(filters);
     res.json(listings);
 };
+
+module.exports.searchListings = async (req, res) => {
+    try {
+        const { query } = req.query;
+        
+        if (!query || query.trim() === '') {
+            req.flash("error", "Please enter a search query");
+            return res.redirect("/listings");
+        }
+
+        // Search in title, description, location, category
+        const searchResults = await Listing.find({
+            $or: [
+                { title: { $regex: query, $options: 'i' } },
+                { description: { $regex: query, $options: 'i' } },
+                { location: { $regex: query, $options: 'i' } },
+                { country: { $regex: query, $options: 'i' } },
+                { category: { $regex: query, $options: 'i' } }
+            ]
+        }).populate("owner");
+
+        if (searchResults.length === 0) {
+            req.flash("error", `No listings found for "${query}"`);
+            return res.redirect("/listings");
+        }
+
+        res.render("listings/search.ejs", { 
+            allListings: searchResults, 
+            query: query 
+        });
+    } catch (err) {
+        req.flash("error", "An error occurred during search");
+        res.redirect("/listings");
+    }
+};

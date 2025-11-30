@@ -15,7 +15,10 @@ router.route("/")
     .get(wrapAsync(listingController.index))
     .post(isLoggedIn, upload.single('listing[image]'), validateListing, wrapAsync(listingController.createListing));
 
-// FILTER ROUTE - BEFORE :id ROUTES
+// SEARCH ROUTE - BEFORE :id ROUTES
+router.get("/search", wrapAsync(listingController.searchListings));
+
+// FILTER ROUTE
 router.get("/filter", wrapAsync(listingController.filterListings));
 
 // NEW FORM

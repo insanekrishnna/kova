@@ -1,0 +1,51 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="container my-5">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h2 class="fw-bold mb-2">Search Results</h2>
+            <p class="text-muted">Found <strong><%= allListings.length %></strong> listing(s) for "<strong><%= query %></strong>"</p>
+            <a href="/listings" class="btn btn-outline-dark rounded-pill ps-2 pe-2 btn-sm">Back to All Listings</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <% if (allListings.length > 0) { %>     
+            <% allListings.forEach((listing) => { %>
+                <div class="col-md-6 col-lg-4 mb-4 ">
+                    <div class="card h-100 border-0 shadow-lg rounded-4  overflow-hidden p-3">
+                        <img 
+                            src="<%= listing.image && listing.image.url ? listing.image.url : '/images/placeholder.png' %>" 
+                            alt="<%= listing.title %>" 
+                            class="card-img-top mb-3 rounded-4 shadow" 
+                            style="height: 200px; object-fit: cover;"
+                        >
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold text-dark"><%= listing.title %></h5>
+                            <p class="card-text text-muted small"><%= listing.description.substring(0, 60) %>...</p>
+                            
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-dark"><%= listing.category %></span>
+                               
+                            </div>
+                            <span class="text-muted small badge border-1 bg-light p-2 mt-1 mb-1 rounded-pill"><i class="fa-solid fa-location-dot"></i> <%= listing.location %></span>
+
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h6 class="fw-bold mb-0">₹<%= listing.price.toLocaleString("en-IN") %>/night</h6>
+                                <a href="/listings/<%= listing._id %>" class="text-dark shadow-lg"> <div class="nav-btn" style="flex-shrink: 0; background:#efefef;">
+                                <i class="bi bi-send-fill"></i>
+                            </div></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        <% } else { %>
+            <div class="col-12">
+                <div class="alert alert-info">
+                    <i class="fa-solid fa-magnifying-glass"></i> No listings found for "<%= query %>"
+                </div>
+            </div>
+        <% } %>
+    </div>
+</div>
