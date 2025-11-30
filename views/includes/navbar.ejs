@@ -7,12 +7,32 @@
       position: relative;
       
       z-index: 1000;
-      
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .btn-dark {
+      background-color: #111;
+      color: #fff;
+      border: none;
+      padding: 0.4rem 1rem;
+      border-radius: 1.3rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .btn-dark i {
+      display: inline;
+      /* margin-right: 0.5rem; */
+    }
+    .search-input {
+      border-radius: 1.3rem;
+      padding: 0.4rem 1rem;
+      border: 2px solid #ccc;
+      transition: border-color 0.3s ease;
+      font-size: 0.9rem;
     }
   </style>
 </head>
 
-<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+<nav class="navbar navbar-expand-md bg-light bg-gradient border-bottom  rounded-pill sticky-top">
   <div class="container-fluid">
     <a class="navbar-brand" href="/listings"><i class="fa-brands fa-kickstarter-k"></i></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,6 +45,13 @@
         <a class="nav-link  text-white" href="/listings/new"><button class="menu-item  logout "> <b>New</b> </button></a>
         
       </div>
+      <div class="navbar-nav ">
+        <form class="d-flex" role="search">
+      <input class="form-control me-2 search-input" type="search" placeholder="Search" aria-label="Search" />
+      <button class="btn btn-dark" type="submit"> <i class="fa-solid fa-magnifying-glass"></i></button>
+     </form>
+      </div>
+
       <div class="navbar-nav ms-auto segmented-control">
         
          <% if(!currUser      ) { %>
