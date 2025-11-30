@@ -35,22 +35,33 @@
       border-color: #111;
       outline: none;
     }
+    .menu-item {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
   </style>
 </head>
 
+<!-- NAVBAR ONLY VISIBLE IF USER IS LOGGED IN -->
+<% if (currUser) { %>
 <nav class="navbar navbar-expand-md bg-light bg-gradient border-bottom rounded-pill sticky-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/listings"><i class="fa-brands fa-kickstarter-k"></i></a>
+    <a class="navbar-brand" href="/listings">
+      <i class="fa-brands fa-kickstarter-k"></i>
+    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav menu-container">
-        <a class="nav-link text-white" href="/listings">
-          <button class="menu-item logout" type="button"><b>Explore</b></button>
+        <a class="nav-link text-dark" href="/listings">
+          <button class="menu-item" type="button"><b>Explore</b></button>
         </a>
-        <a class="nav-link text-white" href="/listings/new">
-          <button class="menu-item logout" type="button"><b>New</b></button>
+        <a class="nav-link text-dark" href="/listings/new">
+          <button class="menu-item" type="button"><b>New</b></button>
         </a>
       </div>
 
@@ -72,19 +83,29 @@
       </div>
 
       <div class="navbar-nav ms-auto segmented-control">
-        <% if(!currUser) { %>
-          <a class="nav-link" href="/signup">
-            <button class="menu-item logout" type="button"><b>Sign Up</b></button>
-          </a>
-          <a class="nav-link" href="/login">
-            <button class="menu-item logout" type="button"><b>Login</b></button>
-          </a>
-        <% } else { %>
-          <a class="nav-link text-white" href="/logout">
-            <button class="menu-item logout" type="button"><b>Logout</b></button>
-          </a>
-        <% } %>
+        <a class="nav-link text-dark" href="/logout">
+          <button class="menu-item" type="button"><b>Logout</b></button>
+        </a>
       </div>
     </div>
   </div>
 </nav>
+<% } else { %>
+
+<!-- MINIMAL NAVBAR - ONLY LOGIN/SIGNUP BUTTONS FOR NON-LOGGED-IN USERS -->
+<nav class="navbar navbar-expand-md bg-light bg-gradient border-bottom sticky-top">
+  <div class="container-fluid d-flex justify-content-between align-items-center">
+    <a class="navbar-brand" href="/">
+      <i class="fa-brands fa-kickstarter-k"></i> Kovaa
+    </a>
+    <div class="d-flex gap-2">
+      <a href="/login" class="btn btn-outline-dark btn-sm rounded-pill px-3">
+        <b>Login</b>
+      </a>
+      <a href="/signup" class="btn btn-dark btn-sm rounded-pill px-3">
+        <b>Sign Up</b>
+      </a>
+    </div>
+  </div>
+</nav>
+<% } %>
