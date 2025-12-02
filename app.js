@@ -21,13 +21,14 @@ const reviewsRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 
 // DB Connection
-const MONGO_URL = "mongodb://localhost:27017/Wanderlust";
+// const MONGO_URL = "mongodb://localhost:27017/Wanderlust";
+const ATLASDB_URL = process.env.ATLASDB_URL;
 main()
   .then(() => console.log("Connected to DB"))
   .catch((err) => console.log(err));
 
 async function main() {
-  await mongoose.connect(MONGO_URL);
+  await mongoose.connect(ATLASDB_URL);
 }
 
 // View engine
