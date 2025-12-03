@@ -12,7 +12,7 @@
     <div class="row">
         <% if (allListings.length > 0) { %>     
             <% allListings.forEach((listing) => { %>
-                <div class="col-md-6 col-lg-4 mb-4 ">
+                <div class="col-md-6 col-lg-4 mb-4">
                     <div class="card h-100 border-0 shadow-lg rounded-4  overflow-hidden p-3">
                         <img 
                             src="<%= listing.image && listing.image.url ? listing.image.url : '/images/placeholder.png' %>" 
