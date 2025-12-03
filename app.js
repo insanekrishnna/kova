@@ -40,7 +40,7 @@ app.set("views", path.join(__dirname, "views"));
 
 //home route
 app.get("/", (req, res) => {
-  res.render("home.ejs");
+  res.render("home");
 });
 
 // Middleware
