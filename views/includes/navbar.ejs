@@ -46,7 +46,7 @@
 </head>
 
 <!-- NAVBAR ONLY VISIBLE IF USER IS LOGGED IN -->
-<% if () { %>
+<% if (typeof currUser !== "undefined" && currUser) { %>
 <nav class="navbar navbar-expand-md bg-light bg-gradient border-bottom rounded-pill sticky-top">
   <div class="container-fluid">
     <a class="navbar-brand" href="/listings">
