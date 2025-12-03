@@ -38,6 +38,11 @@ app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
+//home route
+app.get("/", (req, res) => {
+  res.render("home.ejs");
+});
+
 // Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
