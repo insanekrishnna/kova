@@ -38,7 +38,14 @@ app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-//home route
+app.use((req, res, next) => {
+  res.locals.currUser = req.user || null;
+  res.locals.success = req.flash("success") || [];
+  res.locals.error = req.flash("error") || [];
+  next();
+});
+
+// NOW the home route
 app.get("/", (req, res) => {
   res.render("home");
 });
